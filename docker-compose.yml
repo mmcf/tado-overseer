@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  tado-overseer:
+    image: tado-overseer
+    build:
+      context: .
+    environment:
+      TADO_USERNAME: ${TADO_USERNAME}
+      TADO_PASSWORD: ${TADO_PASSWORD}
+      CLIENT_ID: "${CLIENT_ID}"
+      CLIENT_SECRET: "${CLIENT_SECRET}"

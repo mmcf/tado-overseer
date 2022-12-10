@@ -1,5 +1,7 @@
 dictdiffer
 jsonpath-rw
 jsonpath-rw-ext
+pyfiglet
+pyyaml
 requests
 retry
