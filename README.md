@@ -3,7 +3,7 @@ Light automation and management for Tado systems
 
 ## Documentation
 
-To follow.
+Full documentation can be found on [Read the Docs](https://tado-overseer.readthedocs.io/en/latest/).
 
 
 ## Development
