@@ -1,6 +1,7 @@
 import json
 import jsonpath_rw_ext as jp
 import logging
+import pyfiglet
 import requests
 import sys
 import urllib.parse
@@ -66,10 +67,15 @@ class TadoManager:
         authentication with the Tado API, and retrieval of basic configuration
         information).
         """
+        self._show_banner()
         self.get_access_token()
         self.get_home_id()
         self.get_zones()
         self.get_leader_devices()
+
+    def _show_banner(self) -> None:
+        """Output ASCII art banner"""
+        print(pyfiglet.figlet_format("tado-overseer"))
 
     def _prepare_headers(self) -> dict:
         """Prepares the set of web request headers for each API call.

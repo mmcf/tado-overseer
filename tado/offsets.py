@@ -84,7 +84,7 @@ class TadoOffsetsManager(TadoManager):
                 serial_no = self.leader_devices[room_name]
                 url = f"{BaseUrls.TADO_DEVICE_API.value}/{serial_no}/temperatureOffset"
                 data_payload = dict(celsius=f"{target_temp:.1f}")
-                logging.info(
+                log.info(
                     "Applying change to [{}] - [current:{}, target: {}]".format(
                         room_name.ljust(15), current_temp, target_temp
                     )

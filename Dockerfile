@@ -9,6 +9,7 @@ RUN pip install -U pip
 RUN pip install --user -r requirements.txt
 
 COPY tado/ tado/
+COPY scripts/ scripts/
 COPY config.yaml .
 
 ENTRYPOINT [ "python" ]
