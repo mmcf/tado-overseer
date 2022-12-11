@@ -2,5 +2,6 @@ pre-commit
 pyment
 pytest
 sphinx
+sphinx-copybutton
 sphinx-rtd-theme
 sphinxcontrib-napoleon
