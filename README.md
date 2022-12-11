@@ -18,7 +18,7 @@ _Tado Overseer_ attempts to make this easier, by exposing certain these function
 
 ## Using
 
-### Docker
+### Docker
 
 1. Clone the repo
 
@@ -36,19 +36,19 @@ _Tado Overseer_ attempts to make this easier, by exposing certain these function
    CLIENT_ID=tado-web-app
    ```
 
-   **Note**: `CLIENT_ID` and `CLIENT_SECRET` can be retrieved from: `https://app.tado.com/env.js`
+   **Note**: `CLIENT_ID` and `CLIENT_SECRET` can be retrieved from: [`https://app.tado.com/env.js`](https://app.tado.com/env.js)
 
 1. Configure your temperature offsets in `config.yaml`
 
    ```
    tado:
-   offsets:
-      Hallway: -4.0
-      Kitchen: -2.7
-      Study: -3.0
-      Main Bathroom: -4.0
-      Utility Room: -1.8
-      Lounge: -3.5
+     offsets:
+       Hallway: -4.0
+       Kitchen: -2.7
+       Study: -3.0
+       Main Bathroom: -4.0
+       Utility Room: -1.8
+       Lounge: -3.5
    ```
 
 1. Run the container
