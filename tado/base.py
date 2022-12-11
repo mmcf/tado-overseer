@@ -102,9 +102,12 @@ class TadoManager:
         """Convenience wrapper method to call API endpoints with automatic retry.
 
         Args:
-          ``method`` (str): HTTP method (e.g. ``GET``, ``POST``, ``PUT``)
-          ``url`` (str): URL as constructed and requested by the method caller
-          ``data`` (dict, optional): Request body, defaults to ``{}``
+          ``method`` (str):
+             HTTP method (e.g. ``GET``, ``POST``, ``PUT``)
+          ``url`` (str):
+             URL as constructed and requested by the method caller
+          ``data`` (dict, optional):
+             Request body, defaults to ``{}``
 
         Returns:
            str: Stringified JSON response from the called API

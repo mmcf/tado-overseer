@@ -1,4 +1,6 @@
 pre-commit
+pyment
 pytest
 sphinx
 sphinx-rtd-theme
+sphinxcontrib-napoleon

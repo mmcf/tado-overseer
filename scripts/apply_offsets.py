@@ -11,11 +11,19 @@ if __name__ == "__main__":
         action="store_true",
         help="If set, will not make any permanent changes",
     )
+    parser.add_argument(
+        "-f",
+        "--offsets-file",
+        dest="offsets_file",
+        action="store",
+        help="YAML file containing target offsets to set",
+    )
+
     args = parser.parse_args()
 
     logging.basicConfig(
         level="INFO", format="%(asctime)s [%(name)s] %(levelname)s - %(message)s"
     )
 
-    om = TadoOffsetsManager()
+    om = TadoOffsetsManager(offsets_file=args.offsets_file)
     om.apply_offset_changes(dry_run=args.dry_run)
