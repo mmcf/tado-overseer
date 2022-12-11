@@ -41,6 +41,8 @@ class TadoManager:
          Tado OAuth client secret, defaults to None
       ``client_id`` (str, optional):
          Tado OAuth client identifier, defaults to "tad-web-app"
+      ``load_config`` (bool, optional):
+         Automatically authenticate and load initial config, defaults to ``True``
     """
 
     def __init__(
@@ -49,6 +51,7 @@ class TadoManager:
         password: str = None,
         client_secret: str = None,
         client_id: str = "tado-web-app",
+        load_config: bool = True,
     ) -> None:
         """Constructor method"""
         self.username = username
@@ -59,7 +62,8 @@ class TadoManager:
         self.home_id = None
         self.zones = None
         self.leader_devices = None
-        self._load_config()
+        if load_config:
+            self._load_config()
 
     def _load_config(self) -> None:
         """Bootstrap configuration method.
