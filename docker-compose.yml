@@ -5,8 +5,15 @@ services:
     image: tado-overseer
     build:
       context: .
+      dockerfile: Dockerfile
     environment:
       TADO_USERNAME: ${TADO_USERNAME}
       TADO_PASSWORD: ${TADO_PASSWORD}
       CLIENT_ID: "${CLIENT_ID}"
       CLIENT_SECRET: "${CLIENT_SECRET}"
+
+  tests:
+    image: tado-overseer-tests
+    build:
+      context: .
+      dockerfile: Dockerfile-test
