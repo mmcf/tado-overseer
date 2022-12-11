@@ -32,14 +32,15 @@ class TadoManager:
 
        * ``TADO_USERNAME``, ``TADO_PASSWORD``, ``CLIENT_ID``, ``CLIENT_SECRET``
 
-    :param username: Tado account username, defaults to None
-    :type username: str, optional
-    :param password: Tado account password, defaults to None
-    :type password: str, optional
-    :param client_secret: Tado OAuth client secret, defaults to None
-    :type client_secret: str, optional
-    :param client_id: Tado OAuth client identifier, defaults to "tad-web-app"
-    :type client_id: str, optional
+    Args:
+      ``username`` (str, optional):
+         Tado account username, defaults to None
+      ``password`` (str, optional):
+         Tado account password, defaults to None
+      ``client_secret`` (str, optional):
+         Tado OAuth client secret, defaults to None
+      ``client_id`` (str, optional):
+         Tado OAuth client identifier, defaults to "tad-web-app"
     """
 
     def __init__(
@@ -83,8 +84,9 @@ class TadoManager:
         If the ``access_token`` has already been retrieved, it will be included
         in the headers as a bearer authentication token.
 
-        :return: Dict of headers
-        :rtype: dict
+        Returns:
+          dict: Dict of headers
+
         """
         headers = {}
         headers["Content-Type"] = "application/json"
@@ -99,15 +101,17 @@ class TadoManager:
     def _call_tado_api(self, method: str, url: str, data: dict = {}) -> str:
         """Convenience wrapper method to call API endpoints with automatic retry.
 
-        :param method: HTTP method (e.g. ``GET``, ``POST``, ``PUT``)
-        :type method: str
-        :param url: URL as constructed and requested by the method caller
-        :type url: str
-        :param data: Request body, defaults to {}
-        :type data: dict, optional
-        :raises TokenExpired: Raised when an API request uses an expired token
-        :return: Stringified JSON response from the called API
-        :rtype: str
+        Args:
+          ``method`` (str): HTTP method (e.g. ``GET``, ``POST``, ``PUT``)
+          ``url`` (str): URL as constructed and requested by the method caller
+          ``data`` (dict, optional): Request body, defaults to ``{}``
+
+        Returns:
+           str: Stringified JSON response from the called API
+
+        Raises:
+          ``TokenExpired``: Raised when an API request uses an expired token
+
         """
         try:
             response = requests.request(
@@ -139,8 +143,8 @@ class TadoManager:
         * **Tado username** - sourced from class instantiation argument or environment
         * **Tado password** - sourced from class instantiation argument or environment
 
-        :return: URL encoded string of query parameters
-        :rtype: str
+        Returns:
+           str: URL encoded string of query parameters
         """
         auth_environment = dict(
             grant_type=AuthenticationProperties.GRANT_TYPE.value,
@@ -218,10 +222,13 @@ class TadoManager:
     def celsius_to_fahrenheit(input_temperature: float) -> float:
         """Converts a given temperature from celsius to fahrenheit.
 
-        :param input_temperature: Temperature in celsius
-        :type input_temperature: float
-        :return: Temperature in fahrenheit
-        :rtype: float
+        Args:
+          ``input_temperature`` (float):
+             Temperature in celsius
+
+        Returns:
+           float: Temperature in fahrenheit
+
         """
         output_temperature = round((float(input_temperature) * float(9 / 5)) + 32, 1)
         return output_temperature
@@ -230,10 +237,13 @@ class TadoManager:
     def fahrenheit_to_celsius(input_temperature: float) -> float:
         """Converts a given temperature from fahrenheit to celsius.
 
-        :param input_temperature: Temperature in fahrenheit
-        :type input_temperature: float
-        :return: Temperature in celsius
-        :rtype: float
+        Args:
+          ``input_temperature`` (float):
+             Temperature in fahrenheit
+
+        Returns:
+           float: Temperature in celsius
+
         """
         output_temperature = round((float(input_temperature) - 32.0) * float(5 / 9), 1)
         return output_temperature

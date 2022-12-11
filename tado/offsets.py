@@ -20,10 +20,13 @@ class TadoOffsetsManager(TadoManager):
 
     **Offsets** are defined as pairs of: ``zone_name:temperature_offset_in_celsius``
 
-    :param offsets_dict: Inline dict of **offsets** to set, defaults to {}
-    :type offsets_dict: dict, optional
-    :param offsets_file: YAML file with **offsets** to set, defaults to "config.yaml"
-    :type offsets_file: str, optional
+    Args:
+      ``offsets_dict`` (dict: dict, optional):
+         Inline dict of offsets to set, defaults to ``{}``
+
+      ``offsets_file`` (str, optional):
+         YAML file with offsets to set, defaults to ``config.yaml``
+
     """
 
     def __init__(
@@ -42,8 +45,9 @@ class TadoOffsetsManager(TadoManager):
         """Retrieves the *currently* configured temperature offset values from the
         leader device in each zone.
 
-        :return: Set of ``zone_name:current_offset_temperature`` entries
-        :rtype: dict
+        Returns:
+          dict: Set of ``zone_name:current_offset_temperature`` entries
+
         """
         room_offsets = {}
         for room_name, serial_no in self.leader_devices.items():
@@ -56,16 +60,22 @@ class TadoOffsetsManager(TadoManager):
         """Retrieves the *target* temperature offset values to be set in each zone,
         as defined by the user in the input configuration file.
 
-        :return: Set of ``zone_name:target_offset_temperature`` entries
-        :rtype: dict
+        Returns:
+          dict: Set of ``zone_name:target_offset_temperature`` entries
+
         """
         return self.user_config["tado"]["offsets"]
 
-    def apply_offset_changes(self, dry_run=False):
+    def apply_offset_changes(self, dry_run=False) -> None:
         """Sets the target offset to any zone which has a different value already set.
 
-        :param dry_run: Doesn't modify offsets when set to True, defaults to False
-        :type dry_run: bool, optional
+        This function compares the set of user-provided (target) offsets with the
+        existing (current) offsets for each zone.  For any zone where the target offset
+        is different, a ``PUT`` request is issued to the Tado API to change the offset.
+
+        Args:
+          ``dry_run`` (bool, optional, optional):
+             Doesn't modify offsets when set to ``True``, defaults to ``False``
         """
         for delta in list(
             dictdiffer.diff(
