@@ -4,12 +4,16 @@ WORKDIR /src
 ENV PYTHONPATH=/src
 
 COPY requirements.txt /src/requirements.txt
+COPY requirements-dev.txt /src/requirements-dev.txt
 
 RUN pip install -U pip
 RUN pip install --user -r requirements.txt
+RUN pip install -r requirements-dev.txt
 
 COPY tado/ tado/
 COPY scripts/ scripts/
+COPY tests/ tests/
 COPY config.yaml .
+COPY pytest.ini .
 
-ENTRYPOINT [ "python" ]
+ENTRYPOINT [ "pytest", "-sv" ]
