@@ -94,11 +94,8 @@ class TadoManager:
         """
         headers = {}
         headers["Content-Type"] = "application/json"
-        try:
+        if self.access_token:
             headers["Authorization"] = f"Bearer {self.access_token}"
-        except AttributeError:
-            # Ignore - we just don't have the access token yet
-            pass
         return headers
 
     @retry(TokenExpired, tries=2)

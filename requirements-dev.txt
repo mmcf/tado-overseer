@@ -1,6 +1,7 @@
 pre-commit
 pyment
 pytest
+responses
 sphinx
 sphinx-copybutton
 sphinx-rtd-theme
