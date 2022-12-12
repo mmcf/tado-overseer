@@ -1,6 +1,7 @@
 pre-commit
 pyment
 pytest
+pytest-cov
 responses
 sphinx
 sphinx-copybutton
