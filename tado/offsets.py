@@ -1,5 +1,6 @@
 import dictdiffer
 import logging
+import sys
 from pathlib import Path
 from tado import utils
 from tado.base import TadoManager
@@ -40,6 +41,9 @@ class TadoOffsetsManager(TadoManager):
             self.user_config = self.offsets_dict
         elif Path(self.offsets_file).is_file():
             self.user_config = utils.load_yaml_file(self.offsets_file)
+        else:
+            log.error("No target offsets configured - exiting")
+            sys.exit(-1)
 
     def get_current_device_offsets(self) -> dict:
         """Retrieves the *currently* configured temperature offset values from the

@@ -1,0 +1,9 @@
+graft docs
+graft tado
+graft tests
+
+exclude .gitignore
+exclude .pre-commit-config.yaml
+
+# Exclude: .dockerignore, Dockerfile and docker-compose anywhere in the tree
+global-exclude Docker* *docker*
