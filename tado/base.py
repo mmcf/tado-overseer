@@ -3,7 +3,6 @@ import jsonpath_rw_ext as jp
 import logging
 import pyfiglet
 import requests
-import sys
 import urllib.parse
 from retry import retry
 
@@ -15,6 +14,12 @@ log = logging.getLogger(__name__)
 
 class TokenExpired(Exception):
     """Exception raised when an API request is made with an expired token"""
+
+    pass
+
+
+class APIRequestUnsuccessful(Exception):
+    """Exception raised when an API returns a non-success HTTP code"""
 
     pass
 
@@ -128,10 +133,9 @@ class TadoManager:
                 self.get_access_token()
                 raise TokenExpired("Token expired, retrying")
             elif response.status_code != 200:
-                log.error(
+                raise APIRequestUnsuccessful(
                     f"API request unsuccessful [HTTP code: {response.status_code}]"
                 )
-                sys.exit(-1)
             else:
                 resp_json = response.json()
                 return resp_json
